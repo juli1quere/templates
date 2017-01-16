@@ -13,7 +13,7 @@ enum {{enumName}} {
 {% macro enumBlock strings sp %}
 {{sp}}  {% for string in strings.strings %}
 {{sp}}  /// {{string.translation}}
-{{sp}}  case {{string.keytail|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% if string.params %}({{string.params.types|join}}){% endif %}
+{{sp}}  case {{string.keytail|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% if string.params %}({{string.params.types|join:", "}}){% endif %}
 {{sp}}  {% endfor %}
 {{sp}}  {% for subenum in strings.subenums %}
 

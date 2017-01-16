@@ -7,7 +7,7 @@ import Foundation
 // swiftlint:disable line_length
 {% macro recursiveBlock strings %}
   {% for string in strings.strings %}
-  case {{string.key|swiftIdentifier|snakeToCamelCase|lowerFirstWord|escapeReservedKeywords}}{% if string.params %}({{string.params.types|join}}){% endif %}
+  case {{string.key|swiftIdentifier|snakeToCamelCase|lowerFirstWord|escapeReservedKeywords}}{% if string.params %}({{string.params.types|join:", "}}){% endif %}
   {% endfor %}
   {% for subenum in strings.subenums %}
   {% call recursiveBlock subenum %}

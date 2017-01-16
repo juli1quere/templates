@@ -8,7 +8,7 @@ import Foundation
 {% macro recursiveBlock strings %}
   {% for string in strings.strings %}
   /// {{string.translation}}
-  case {{string.key|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% if string.params %}({{string.params.types|join}}){% endif %}
+  case {{string.key|swiftIdentifier|snakeToCamelCase|escapeReservedKeywords}}{% if string.params %}({{string.params.types|join:", "}}){% endif %}
   {% endfor %}
   {% for subenum in strings.subenums %}
   {% call recursiveBlock subenum %}
