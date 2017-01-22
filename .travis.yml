@@ -3,10 +3,14 @@ os: osx
 osx_image: xcode8.2
 
 install:
+ - bundle install
  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
 env:
  - RAKETASK=test
+
+before_script:
+ - bundle exec danger
 
 script:
   - Scripts/install_swiftlint.sh
