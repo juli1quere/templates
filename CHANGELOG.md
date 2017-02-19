@@ -10,7 +10,9 @@ _None_
 
 ### Breaking Changes
 
-_None_
+* Update templates to use the Stencil built-in `join` filter instead of our own.  
+  [@djbe](https://github.com/djbe)
+  [#22](https://github.com/SwiftGen/templates/issues/22)
 
 ### New Features
 
