@@ -130,15 +130,18 @@ extension XCTestCase {
    
    - Parameter template: The name of the template (without the `stencil` extension)
    - Parameter contextNames: A list of context names (without the `plist` extension)
-   - Parameter outputPrefix: Prefix for the output files, becomes "{outputPrefix}-context-{contextName}.swift"
+   - Parameter outputPrefix: Prefix for the output files, becomes "{outputPrefix}-context-{contextName}.swift". Defaults to template name.
    - Parameter directory: The directory to look for files in (correspons to de command)
    - Parameter resourceDirectory: The directory to look for files in (corresponds to de command)
    - Parameter contextVariations: Optional closure to generate context variations.
    */
-  func test(template templateName: String, contextNames: [String], outputPrefix: String, directory: Fixtures.Directory, resourceDirectory: Fixtures.Directory? = nil, contextVariations: VariationGenerator? = nil) {
+  func test(template templateName: String, contextNames: [String], outputPrefix: String? = nil, directory: Fixtures.Directory, resourceDirectory: Fixtures.Directory? = nil, contextVariations: VariationGenerator? = nil) {
     let template = StencilSwiftTemplate(templateString: Fixtures.template(for: "\(templateName).stencil", sub: directory),
                                         environment: stencilSwiftEnvironment())
+    
+    // default values
     let contextVariations = contextVariations ?? { [(context: $1, suffix: "")] }
+    let prefix = outputPrefix ?? templateName
     let resourceDir = resourceDirectory ?? directory
     
     for contextName in contextNames {
@@ -147,7 +150,7 @@ extension XCTestCase {
       
       for (context, suffix) in contextVariations(contextName, context) {
         let result = try! template.render(context)
-        let expected = Fixtures.output(for: "\(outputPrefix)-context-\(contextName)\(suffix).swift", sub: resourceDir)
+        let expected = Fixtures.output(for: "\(prefix)-context-\(contextName)\(suffix).swift", sub: resourceDir)
         XCTDiffStrings(result, expected)
       }
     }
