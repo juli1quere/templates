@@ -3,9 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>extraImports</key>
-	<array/>
+	<array>
+		<string>FadeSegue</string>
+	</array>
 	<key>modules</key>
-	<array/>
+	<array>
+		<string>FadeSegue</string>
+	</array>
 	<key>sceneEnumName</key>
 	<string>StoryboardScene</string>
 	<key>segueEnumName</key>
@@ -96,7 +100,9 @@
 				</dict>
 				<dict>
 					<key>customClass</key>
-					<string></string>
+					<string>FadeSegue</string>
+					<key>customModule</key>
+					<string>FadeSegue</string>
 					<key>identifier</key>
 					<string>public</string>
 				</dict>
