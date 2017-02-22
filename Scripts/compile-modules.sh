@@ -7,7 +7,7 @@ SWIFT3_TOOLCHAIN=""
 # compile macos modules
 SDK=$(xcrun --show-sdk-path --sdk macosx)
 TARGET="x86_64-apple-macosx10.12"
-MODULES=( "PrefsWindowController" )
+MODULES=( "FadeSegue" "PrefsWindowController" )
 
 for m in ${MODULES[@]}; do
 	echo "Compiling module ${m}… (macos)"
@@ -15,7 +15,7 @@ for m in ${MODULES[@]}; do
 	xcrun $SWIFT2_TOOLCHAIN swiftc -emit-module "$INPUT_PATH/$m.swift" -sdk $SDK -module-name "$m" -emit-module-path "$OUTPUT_PATH/swift2.3" -target $TARGET
 done
 
-#compile ios modules
+# compile ios modules
 SDK=$(xcrun --show-sdk-path --sdk iphoneos)
 TARGET="armv7s-apple-ios10.0"
 MODULES=( "CustomSegue" "LocationPicker" "SlackTextViewController" )
