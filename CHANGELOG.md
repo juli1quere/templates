@@ -6,7 +6,9 @@
 
 ### Bug Fixes
 
-_None_
+* The storyboards macOS swift3 template was missing the "current target" module ignore code.  
+  [@djbe](https://github.com/djbe)
+  [#27](https://github.com/SwiftGen/templates/issues/27)
 
 ### Breaking Changes
 
